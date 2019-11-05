@@ -29,6 +29,77 @@ function playGame() {
     promptUser();
 
     function promptUser() {
-        inquirer.prompt
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "Choose letter",
+                name: "guess"
+            }
+        ]) .then(function (response){
+
+            if (totalGuesses >= 1) {
+                gameWord.makeGuess(response.guess);
+            }
+
+            var usedIndex = -1;
+            var alreadyGuessed = false;
+            usedIndex = usedArray.indexOf(response.guess);
+            if (usedIndex > -1) {
+                alreadyGuessed = true;
+            }
+
+            usedArray.push(response.guess);
+
+            var letterInWord = false;
+
+            for (var i = 0; i < gameWord.letterArr.length; i++) {
+                if (response.guess === gameWord.letterArr[i].letter && !alreadyGuessed) {
+                letterInWord = true;
+            }
+         }
+         
+         if (letterInWord) {
+             console.log("Correct, you have " + totalGuesses + "Guesses left.\n") 
+         }
+         else {
+             totalGuesses--;
+
+             if (alreadyGuessed) {
+                 if (totalGuesses === 0) {
+                     console.log("Letter already guessed\n");
+                 } else {
+                     console.log("letter already guessed, next chance, you have " + totalGuesses + "Guesses left.\,n");
+                 }
+             } else {
+                if (totalGuesses === 0) {
+                    console.log("wrong\n");
+                } else {
+                    console.log("Wrong, next chance, you have " + totalGuesses + "Guesses left\n.");
+                }
+             }
+         }
+
+         var matchLetter = false;
+         for (i=0; i < gameWord.letterArr.length; i++){
+             if (gameWord.letterArr[i].guessed === false) {
+                 matchLetter = true;
+             }
+         }
+
+         if (!matchLetter) {
+             gameWord.dispWord();
+             console.log("\nWinner Winner\n");
+             replayGame();
+         } else {
+             gameWord.dispWord()
+
+             if (totalGuesses === 0) {
+                 console.log("\n You are a L0SER! The right answer is: " + chosenWord.toUpperCase() + "\n");
+                 replayGame();
+             } else {
+                 promptUser();
+             }
+         }
+        });
     }
 }
