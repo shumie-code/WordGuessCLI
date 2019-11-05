@@ -13,12 +13,15 @@ function Word(char) {
             this.letterArr.push(new letter(gameArr[i]));
         }
     };
-
+    //This.display word function for returning a string of the word. 
     this.dispWord = function() {
+        //Displays returning word objects in an array.
         var dispArr = [];
+        //Iterates through the letter array to check if the word contains the letter guessed.
         for (var i = 0; i < this.letterArr.length; i++) {
             dispArr.push(this.letterArr[i].showLetter());
         }
+        //Displays to the console the charecter and or underscore and concatantes them together.
         console.log(dispArr.join(" "));
     }
 }
