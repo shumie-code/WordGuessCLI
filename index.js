@@ -3,3 +3,22 @@
 // the - between a-z allows for spaces in words
 var letterCheck = /^[a-z]$/
 
+
+function Letter(char) {
+    this.guessed = false;
+    this.letter = char;
+    this.showLetter = function() {
+        if (this.guessed || !(letterCheck.test(this.letter))) {
+            return this.letter.toUpperCase();
+        } else {
+            return "_";
+        }
+    }
+    this.checkLetter = function(guess) {
+        if (guess === this.letter) {
+            this.guessed = true;
+        }
+    }
+}
+
+module.exports = Letter;
