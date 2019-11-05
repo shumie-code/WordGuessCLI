@@ -2,21 +2,23 @@
 var Word = require("./word.js");
 // Calls npm package Inquirer
 var inquirer = require("inquirer");
-
+// Array holding the planets in the solar system
 function playGame() {
     var wordArr = ["sun", "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
-
+// Array of used letters
     var usedArray = [];
-
+// Check for letter inputs using regex
     var letterCheck = /^[a-z]$/;
-
+// Establishes total guesses 
     var totalGuesses = 20;
-
+// Logs the name of the game along with the total guesses remaining pulled  from the totalGuesses variable
     console.log("\nThe Solar System Game. There are " totalGuesses + " Attempts to guess the planets names\n");
+  //Set word array of planets to be random and sets them as a variable stored in chosen word
     var chosenWord = wordArr[Math.floor(Math.random() * wordArr.length)]
+    //Sets new chosen word as the variable gameWord
     var gameWord = new Word(chosenWord)
     gameWord.makeWord();
-
+    // Iterates through the game word chosen and the letter array, if the letter is found then boolean will be set to true,
     for (var i=0; i < gameWord.letterArr.length; i++) {
         if (!letterCheck.test(gameWord.letterArr[i].letter)) {
             console.log(gameWord.letterArr[i].letter);
@@ -88,7 +90,7 @@ function playGame() {
 
          if (!matchLetter) {
              gameWord.dispWord();
-             console.log("\nWinner Winner\n");
+             console.log("\nWinner Winner!\n");
              replayGame();
          } else {
              gameWord.dispWord()
@@ -114,7 +116,7 @@ function replayGame(){
         }
     ]).then(function(response) {
         if (response.again === "Again") {
-            console.log("\nHere's your new state to guess:");
+            console.log("\n New planet to guess:");
             playGame();
         } else {
             console.log("\nSeeYouLater\m");
