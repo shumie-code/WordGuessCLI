@@ -24,8 +24,9 @@ function Word(char) {
         //Displays to the console the charecter and or underscore and concatantes them together.
         console.log(dispArr.join(" "));
     }
-
+    // Function that takes a charecter as an argument and calls the guess function on each letter object.
     this.makeGuess = function (char) {
+        //Iterates through the second function defined in letter.js
         for (var i = 0; i < this.letterArr.length; i++) {
             this.letterArr[i].checkLetter(char);
         }
