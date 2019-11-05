@@ -25,9 +25,9 @@ function playGame() {
             gameWord.letterArr[i].guessed = true;
         }
     }
-
+// function
     gameWord.dispWord()
-
+//Prompt to user via inquierer 
     promptUser();
 
     function promptUser() {
@@ -38,21 +38,23 @@ function playGame() {
                 name: "guess"
             }
         ]) .then(function (response){
-
+            // checks user input
             if (totalGuesses >= 1) {
                 gameWord.makeGuess(response.guess);
             }
-
+            //check for repeated letter selection
             var usedIndex = -1;
             var alreadyGuessed = false;
             usedIndex = usedArray.indexOf(response.guess);
             if (usedIndex > -1) {
                 alreadyGuessed = true;
             }
-
+            // save letter selected by user
             usedArray.push(response.guess);
-
+            
+            // if letter found not already used set booleann for letterInWord to true.
             var letterInWord = false;
+
 
             for (var i = 0; i < gameWord.letterArr.length; i++) {
                 if (response.guess === gameWord.letterArr[i].letter && !alreadyGuessed) {
@@ -65,7 +67,7 @@ function playGame() {
          }
          else {
              totalGuesses--;
-
+            //Errors for already guessed and remaining guesses.
              if (alreadyGuessed) {
                  if (totalGuesses === 0) {
                      console.log("Letter already guessed\n");
@@ -80,21 +82,21 @@ function playGame() {
                 }
              }
          }
-
+         // Filter through letter array to see if letter has been used if not set to false and boolean to true.
          var matchLetter = false;
          for (i=0; i < gameWord.letterArr.length; i++){
              if (gameWord.letterArr[i].guessed === false) {
                  matchLetter = true;
              }
          }
-
+         // If no more matches then array is complete and the game is done.
          if (!matchLetter) {
              gameWord.dispWord();
              console.log("\nWinner Winner!\n");
              replayGame();
          } else {
              gameWord.dispWord()
-
+            // If guesses remain user can continue if no guesses remain game ends, user will be asked to replay
              if (totalGuesses === 0) {
                  console.log("\n You are a L0SER! The right answer is: " + chosenWord.toUpperCase() + "\n");
                  replayGame();
