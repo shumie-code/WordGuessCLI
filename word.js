@@ -14,6 +14,11 @@ function Word(char) {
         }
     };
 
-
-
+    this.dispWord = function() {
+        var dispArr = [];
+        for (var i = 0; i < this.letterArr.length; i++) {
+            dispArr.push(this.letterArr[i].showLetter());
+        }
+        console.log(dispArr.join(" "));
+    }
 }
