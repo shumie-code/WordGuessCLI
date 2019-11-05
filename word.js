@@ -7,14 +7,14 @@ function Word(char) {
     //This.letterArr sets an array equal to the new letter.
     this.letterArr = [];
     //This defines an array of new letter objects representing the letters from the underlying words.
-    this.makeWord = function() {
+    this.makeWord = function () {
         var gameArr = this.getWord.split("");
-        for (var i=0; i < gameArr.length; i++) {
+        for (var i = 0; i < gameArr.length; i++) {
             this.letterArr.push(new letter(gameArr[i]));
         }
     };
     //This.display word function for returning a string of the word. 
-    this.dispWord = function() {
+    this.dispWord = function () {
         //Displays returning word objects in an array.
         var dispArr = [];
         //Iterates through the letter array to check if the word contains the letter guessed.
@@ -24,4 +24,12 @@ function Word(char) {
         //Displays to the console the charecter and or underscore and concatantes them together.
         console.log(dispArr.join(" "));
     }
+
+    this.makeGuess = function (char) {
+        for (var i = 0; i < this.letterArr.length; i++) {
+            this.letterArr[i].checkLetter(char);
+        }
+    }
 }
+
+module.exports = Word;
