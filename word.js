@@ -2,9 +2,11 @@
 var letter = require("./letter.js");
 // Constructor function that depends on the letter constructor
 function Word(char) {
-    //this is used to create an ob
+    //This.getWord is used to create an object representing the current word the user is attempting to guess.
     this.getWord = char;
-    this.letterArr =[];
+    //This.letterArr sets an array equal to the new letter.
+    this.letterArr = [];
+    //This defines an array of new letter objects representing the letters from the underlying words.
     this.makeWord = function() {
         var gameArr = this.getWord.split("");
         for (var i=0; i < gameArr.length; i++) {
