@@ -103,3 +103,23 @@ function playGame() {
         });
     }
 }
+
+function replayGame(){
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Play again?",
+            choices: ["again", "quit"],
+            name: "again"
+        }
+    ]).then(function(response) {
+        if (response.again === "Again") {
+            console.log("\nHere's your new state to guess:");
+            playGame();
+        } else {
+            console.log("\nSeeYouLater\m");
+        }
+    });
+}
+
+playGame();
