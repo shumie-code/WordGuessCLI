@@ -12,7 +12,7 @@ function playGame() {
 // Establishes total guesses 
     var totalGuesses = 20;
 // Logs the name of the game along with the total guesses remaining pulled  from the totalGuesses variable
-    console.log("\nThe Solar System Game. There are " totalGuesses + " Attempts to guess the planets names\n");
+    console.log("\nThe Solar System Game. There are " + totalGuesses + " Attempts to guess the planets names\n");
   //Set word array of planets to be random and sets them as a variable stored in chosen word
     var chosenWord = wordArr[Math.floor(Math.random() * wordArr.length)]
     //Sets new chosen word as the variable gameWord
@@ -27,7 +27,7 @@ function playGame() {
     }
 // function
     gameWord.dispWord()
-//Prompt to user via inquierer 
+//Prompt to user via inquier
     promptUser();
 
     function promptUser() {
@@ -52,7 +52,7 @@ function playGame() {
             // save letter selected by user
             usedArray.push(response.guess);
             
-            // if letter found not already used set booleann for letterInWord to true.
+            // if letter found not already used set boolean for letterInWord to true.
             var letterInWord = false;
 
 
@@ -121,7 +121,7 @@ function replayGame(){
             console.log("\n New planet to guess:");
             playGame();
         } else {
-            console.log("\nSeeYouLater\m");
+            console.log("\nSeeYouLater\n");
         }
     });
 }
